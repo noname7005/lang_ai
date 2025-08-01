@@ -1,0 +1,48 @@
+name: lang_ai
+description: A new Flutter project
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.4 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 상태 관리
+  provider: ^6.1.2
+
+  # iOS 스타일 아이콘
+  cupertino_icons: ^1.0.8
+
+  # 날짜 및 다국어 지원
+  intl: ^0.20.2
+
+  # HTTP 요청
+  http: ^1.4.0
+
+  # Firebase 연동
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.17.4
+  firebase_database: ^10.4.0
+
+  # 디자인용 텍스트 자동 크기 조절
+  auto_size_text: ^3.0.0
+
+  # 데이터 암호화
+  encrypt: ^5.0.1
+
+  # GUI
+  smooth_page_indicator: ^1.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # 린트 규칙
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
