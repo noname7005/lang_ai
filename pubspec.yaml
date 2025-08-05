@@ -21,7 +21,7 @@ dependencies:
   intl: ^0.20.2
 
   # HTTP 요청
-  http: ^1.4.0
+  http: ^1.2.2
 
   # Firebase 연동
   firebase_core: ^2.32.0
@@ -42,7 +42,7 @@ dev_dependencies:
     sdk: flutter
 
   # 린트 규칙
-  flutter_lints: ^5.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
