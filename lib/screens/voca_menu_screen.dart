@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
-import 'word_edit_screen.dart';
+import 'package:lang_ai/screens/word/topic_screen.dart';
+import 'package:lang_ai/screens/word/word_list_screen.dart';
+import 'package:lang_ai/screens/word/quiz_screen.dart';
 
 class VocaMenuScreen extends StatelessWidget {
   const VocaMenuScreen({super.key});
 
   void _onMenuTap(BuildContext context, String title) {
-    if (title == 'User') {
+    if (title == 'User') { //사용자 단어장
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const WordEditScreen()),
+        MaterialPageRoute(builder: (context) => const WordListScreen()),
       );
     }
+    else if (title == 'Topic') { //주제별 단어장
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const TopicMenuScreen()),
+      );
+    }
+    else if (title == 'Quiz') { //구현 필요
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const QuizScreen()));
+    }
+
     else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$title 기능은 아직 준비 중입니다.')),
