@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/splash_screen.dart';
+import 'package:lang_ai/screens/splash_screen.dart';
+import 'package:lang_ai/screens/voca_menu_screen.dart';
 
 void main() {
   runApp(const MyApp());
