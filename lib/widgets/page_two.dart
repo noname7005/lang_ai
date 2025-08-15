@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lang_ai/screens/login_screen.dart';
 import '../screens/conversation_menu_screen.dart';
 import '../screens/voca_menu_screen.dart';
 import '../screens/sentence_menu_screen.dart';
 
 class PageTwo extends StatelessWidget {
   const PageTwo({super.key});
-
 
   void _onMenuTap(BuildContext context, String title) {
     if (title == 'Conversation') {
@@ -30,11 +31,111 @@ class PageTwo extends StatelessWidget {
     }
   }
 
+  // 표시용 사용자 이름 생성
+  String _displayName(User user) {
+    // 1순위 : Firebase User.displayName
+    final userName = user.displayName?.trim();
+    if (userName != null && userName.isNotEmpty) return userName;
 
-
+    // 2순위 : '사용자' 기본값
+    return "사용자";
+  }
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snap) {
+        if (snap.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snap.hasError) {
+          return Center(
+            child: Text('상태를 불러오는 중 오류가 발생했습니다: ${snap.error}'),
+          );
+        }
+
+        final user = snap.data;
+
+        if (user == null) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 8, 8),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        '로그인이 필요하신가요?',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()),
+                        );
+                      },
+                      child: const Text('로그인'),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Expanded(child: _buildMenuList(context)),
+            ],
+          );
+        } else {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 8, 8),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '${_displayName(user)}님, 반갑습니다.',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('로그아웃되었습니다.')),
+                          );
+                        }
+                      },
+                      child: const Text('로그아웃'),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Expanded(child: _buildMenuList(context)),
+            ],
+          );
+        }
+      },
+    );
+  }
+
+  // 기존 ListView를 함수로 분리함
+  Widget _buildMenuList(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -63,7 +164,9 @@ class PageTwo extends StatelessWidget {
   }
 
   Widget _buildMenuCard(BuildContext context,
-      {required IconData icon, required String title, required String subtitle}) {
+      {required IconData icon,
+      required String title,
+      required String subtitle}) {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -88,7 +191,8 @@ class PageTwo extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: const TextStyle(fontSize: 14, color: Colors.black54),
+                      style:
+                          const TextStyle(fontSize: 14, color: Colors.black54),
                     ),
                   ],
                 ),
