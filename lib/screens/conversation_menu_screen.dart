@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'ai_chat_screen.dart';
+import 'chat/ai_chat_screen.dart';
+import 'chat/ex_script_screen.dart';
+import 'chat/feedback_chat_screen.dart';
 
 class ConversationMenuScreen extends StatelessWidget {
   const ConversationMenuScreen({super.key});
@@ -10,6 +12,18 @@ class ConversationMenuScreen extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const AiChatScreen()),
+      );
+    }
+    else if (title == 'Dialog Scripts') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ExScriptScreen()),
+      );
+    }
+    else if (title == 'Feedback') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const FeedbackChatScreen()),
       );
     }
     else {
@@ -45,8 +59,8 @@ class ConversationMenuScreen extends StatelessWidget {
           _buildMenuCard(
             context,
             icon: Icons.record_voice_over,
-            title: 'Role Play',
-            subtitle: '역할극처럼 대화 연습을 해보세요',
+            title: 'Feedback',
+            subtitle: '기록된 대화를 평가합니다',
           ),
         ],
       ),
