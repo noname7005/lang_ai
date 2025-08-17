@@ -28,6 +28,9 @@ dependencies:
   firebase_auth: ^4.17.4
   firebase_database: ^10.4.0
 
+  # google_sign_in
+  google_sign_in: ^6.2.2
+
   # 디자인용 텍스트 자동 크기 조절
   auto_size_text: ^3.0.0
 
@@ -45,4 +48,7 @@ dev_dependencies:
   flutter_lints: ^3.0.1
 
 flutter:
+  assets:
+    - assets/images/
   uses-material-design: true
+  
