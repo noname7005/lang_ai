@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:lang_ai/screens/sentence/sentence_example_screen.dart';
+import 'package:lang_ai/screens/sentence/sentence_analyze_screen.dart';
 
 class SentenceMenuScreen extends StatelessWidget {
   const SentenceMenuScreen({super.key});
 
   void _onMenuTap(BuildContext context, String title) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$title 기능은 아직 준비 중입니다.')),
-    );
+    if (title == 'Example') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SentenceExampleScreen()),
+      );
+    } else if (title == 'Writing') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SentenceAnalyzeScreen()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$title 기능은 아직 준비 중입니다.')),
+      );
+    }
   }
 
   @override
@@ -29,14 +43,7 @@ class SentenceMenuScreen extends StatelessWidget {
             context,
             icon: Icons.edit,
             title: 'Writing',
-            subtitle: '문장을 직접 작성해보세요',
-          ),
-          const SizedBox(height: 12),
-          _buildMenuCard(
-            context,
-            icon: Icons.repeat,
-            title: 'Correction',
-            subtitle: 'AI가 문장을 교정해줍니다',
+            subtitle: '문장을 직접 작성해보세요. AI가 문장을 교정해줍니다',
           ),
         ],
       ),

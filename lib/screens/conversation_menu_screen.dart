@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
-import 'ai_chat_screen.dart';
+import 'chat/ai_chat_screen.dart';
+import 'chat/ex_script_screen.dart';
+import 'chat/feedback_chat_screen.dart';
 
 class ConversationMenuScreen extends StatelessWidget {
   const ConversationMenuScreen({super.key});
 
   void _onMenuTap(BuildContext context, String title) {
-
     if (title == 'AI Chat') {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const AiChatScreen()),
       );
-    }
-    else {
+    } else if (title == 'Dialog Scripts') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ExScriptScreen()),
+      );
+    } else if (title == 'Feedback') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const FeedbackChatScreen()),
+      );
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$title 기능은 아직 준비 중입니다.')),
       );
@@ -45,8 +55,8 @@ class ConversationMenuScreen extends StatelessWidget {
           _buildMenuCard(
             context,
             icon: Icons.record_voice_over,
-            title: 'Role Play',
-            subtitle: '역할극처럼 대화 연습을 해보세요',
+            title: 'Feedback',
+            subtitle: '기록된 대화를 평가합니다',
           ),
         ],
       ),
@@ -54,7 +64,9 @@ class ConversationMenuScreen extends StatelessWidget {
   }
 
   Widget _buildMenuCard(BuildContext context,
-      {required IconData icon, required String title, required String subtitle}) {
+      {required IconData icon,
+      required String title,
+      required String subtitle}) {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -79,7 +91,8 @@ class ConversationMenuScreen extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: const TextStyle(fontSize: 14, color: Colors.black54),
+                      style:
+                          const TextStyle(fontSize: 14, color: Colors.black54),
                     ),
                   ],
                 ),

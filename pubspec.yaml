@@ -40,6 +40,9 @@ dependencies:
   # GUI
   smooth_page_indicator: ^1.2.1
 
+  # App 파일 저장
+  path_provider: ^2.1.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
