@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
-import 'day_screen.dart';
+import 'topic_word_list_screen.dart';
 
-class TopicMenuScreen extends StatelessWidget {
-  const TopicMenuScreen({super.key});
+class DayListScreen extends StatelessWidget {
+  final String topicKey;
+  const DayListScreen({super.key, required this.topicKey});
 
   @override
   Widget build(BuildContext context) {
-    final topics = const ['TOEIC', 'TOEFL', 'CONVERSATION', 'BUSINESS'];
+    // Day1 ~ Day10
+    final days = List.generate(10, (i) => "Day ${i + 1}");
 
     return Scaffold(
-      appBar: AppBar(title: const Text('TOPIC')),
+      appBar: AppBar(title: Text(topicKey)),
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
-        itemCount: topics.length,
+        itemCount: days.length,
         separatorBuilder: (_, __) => const SizedBox(height: 12),
         itemBuilder: (_, i) {
-          final t = topics[i];
+          final d = days[i];
           return ElevatedButton(
             onPressed: () {
-              // 여기서 DayListScreen으로 이동
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => DayListScreen(topicKey: t),
+                  builder: (_) => TopicWordListScreen(
+                    topicKey: topicKey,
+                    day: i + 1,
+                  ),
                 ),
               );
             },
-            child: Text(t),
+            child: Text(d),
           );
         },
       ),

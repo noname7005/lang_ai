@@ -11,71 +11,9 @@ class ApiService {
   // 백엔드 서버 주소
   static const String _baseUrl = 'http://10.0.2.2:3000';
 
-  // 단어 목록 조회
-  Future<List<Word>> fetchWords() async {
-    final uri = Uri.parse('$_baseUrl/words');
-    final response = await http.get(uri);
-
-    if (response.statusCode == 200) {
-      final List<dynamic> list = jsonDecode(response.body);
-      return list.map((e) => Word.fromJson(e)).toList();
-    } else {
-      throw Exception('단어 목록 조회 실패: ${response.statusCode}');
-    }
-  }
-
-  // 단어 추가
-  Future<Word> addWord(Word word) async {
-    final uri = Uri.parse('$_baseUrl/words');
-    final response = await http.post(
-      uri,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(word.toJson()),
-    );
-
-    if (response.statusCode == 201) {
-      return Word.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('단어 추가 실패: ${response.statusCode}');
-    }
-  }
-
-  // 단어 수정
-  Future<Word> updateWord(Word word) async {
-    final uri = Uri.parse('$_baseUrl/words/${word.id}');
-    final response = await http.put(
-      uri,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(word.toJson()),
-    );
-
-    if (response.statusCode == 200) {
-      return Word.fromJson(jsonDecode(response.body));
-    } else {
-      throw Exception('단어 수정 실패: ${response.statusCode}');
-    }
-  }
-
-  // 단어 삭제
-  Future<void> deleteWord(int id) async {
-    final uri = Uri.parse('$_baseUrl/words/$id');
-    final response = await http.delete(uri);
-
-    if (response.statusCode != 200) {
-      throw Exception('단어 삭제 실패: ${response.statusCode}');
-    }
-  }
-
-  // 즐겨찾기 토글
-  Future<Word> toggleFavorite(Word word) async {
-    word.favorite = !word.favorite;
-    return updateWord(word);
-  }
 
   // AI 예문 생성 (OpenAI GPT 호출)
   Future<List<String>> generateExamplesWithAI(String word) async {
-
-
     final messages = [
       ChatMessage(
           role: 'system',

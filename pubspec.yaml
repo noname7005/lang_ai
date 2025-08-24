@@ -27,6 +27,7 @@ dependencies:
   firebase_core: ^2.32.0
   firebase_auth: ^4.17.4
   firebase_database: ^10.4.0
+  cloud_firestore: ^4.15.6
 
   # google_sign_in
   google_sign_in: ^6.2.2
@@ -40,6 +41,10 @@ dependencies:
   # GUI
   smooth_page_indicator: ^1.2.1
 
+  # 로그인 없이 사용 가능하도록 uuid 부여
+  shared_preferences: ^2.2.2
+  uuid: ^4.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -50,5 +55,6 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/topics/
   uses-material-design: true
   
