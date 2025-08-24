@@ -404,7 +404,7 @@ ${(context == null || context.trim().isEmpty) ? '' : 'context:\n$context'}
         'Authorization': 'Bearer $apiKey', // ApiService의 apiKey 사용
       },
       body: jsonEncode({
-        "model": "gpt-4o-mini",
+        "model": "gpt-3.5-turbo",
         "messages": [
           {"role": "system", "content": system},
           {"role": "user", "content": user},
@@ -453,6 +453,158 @@ ${(context == null || context.trim().isEmpty) ? '' : 'context:\n$context'}
         suggested: original, // 변경 불가 시 원문 유지
         reasonKo: '파싱 실패: 모델 응답 형식이 JSON 규격과 다릅니다.',
       );
+    }
+  }
+
+  /// 한글 입력을 바탕으로 자연스러운 영어 예문을 생성 (설명은 한국어)
+  Future<List<Map<String, dynamic>>> getSentenceExamples({
+    required String korean,
+    int count = 5,
+    String levelHint = 'B1',
+    String tone = 'neutral', // neutral/polite/casual/formal
+    double temperature = 0.4,
+  }) async
+  {
+    const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+    final system = '''
+You are a bilingual English coach for Korean learners (Korean L1).
+Return ONLY valid JSON like:
+{"examples":[ {"en":"...","note_ko":"..."}, ... ]}
+
+Rules:
+- Given a Korean input, infer intent and produce $count natural ENGLISH sentences (field "en") that fit the intent, CEFR $levelHint, tone=$tone.
+- Keep sentences concise and practical for conversation.
+- Add a short KOREAN explanation for each in "note_ko" (why it's natural/when to use).
+- No markdown fences, no extra keys.
+''';
+
+    final user = 'KR: $korean';
+
+    final res = await http.post(
+      Uri.parse(endpoint),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $apiKey',
+      },
+      body: jsonEncode({
+        "model": "gpt-3.5-turbo",
+        "messages": [
+          {"role": "system", "content": system},
+          {"role": "user", "content": user}
+        ],
+        "temperature": temperature,
+        "stream": false,
+      }),
+    );
+
+    final body = utf8.decode(res.bodyBytes);
+    if (res.statusCode != 200) {
+      throw Exception('HTTP ${res.statusCode}: $body');
+    }
+
+    // OpenAI 응답 파싱
+    try {
+      final root = jsonDecode(body) as Map<String, dynamic>;
+      final content = (root['choices']?[0]?['message']?['content'] ?? '') as String;
+      final parsed = jsonDecode(content) as Map<String, dynamic>;
+      final list = (parsed['examples'] as List?) ?? const [];
+      // 각 항목을 Map으로 보장
+      return list.map<Map<String, dynamic>>((e) {
+        if (e is Map<String, dynamic>) return e;
+        return {"en": e.toString(), "note_ko": ""};
+      }).toList();
+    } catch (_) {
+      // 모델이 규격을 안 지킨 경우: 라인 분리 폴백
+      final lines = body.split('\n').map((l) => l.trim()).where((l) => l.isNotEmpty).toList();
+      return lines.map((l) => {"en": l, "note_ko": ""}).toList();
+    }
+  }
+
+  /// 영어 문장 문법 검사 + 추천(한국어 설명 포함)
+  Future<Map<String, dynamic>> analyzeGrammar({
+    required String english,
+    int count = 5,                // 최대 이슈/추천 개수
+    String levelHint = 'B1',
+    String tone = 'neutral',      // rewrite 톤
+    bool includeRewrite = true,
+    double temperature = 0.25,
+  }) async
+  {
+    const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+    final system = '''
+You are an expert ESL writing tutor for Korean learners (Korean L1).
+Return ONLY valid JSON like:
+{
+  "corrected": "quickly corrected version in ENGLISH (keep meaning)",
+  "issues": [
+    {"original":"...","suggested":"...","reason_ko":"...","alternatives":["...","..."]}
+  ],
+  "rewrite": "polished rewrite in ENGLISH with tone=$tone"  // optional if includeRewrite=true
+}
+
+Rules:
+- Analyze the given ENGLISH input.
+- "corrected": small fixes (grammar/tense/prep) with minimal changes.
+- "issues": up to $count items. For each:
+  - original (snippet or sentence),
+  - suggested (improved ENGLISH),
+  - reason_ko (KOREAN explanation; 1–2 lines),
+  - alternatives: 1–3 natural alternatives in ENGLISH (optional).
+- If includeRewrite=$includeRewrite, add "rewrite": a more polished version in ENGLISH with tone=$tone.
+- Consider CEFR level: $levelHint (avoid too advanced vocabulary if not needed).
+- No markdown fences, no extra keys.
+''';
+
+    final user = 'INPUT:\n$english';
+
+    final res = await http.post(
+      Uri.parse(endpoint),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $apiKey',
+      },
+      body: jsonEncode({
+        "model": "gpt-3.5-turbo",
+        "messages": [
+          {"role": "system", "content": system},
+          {"role": "user", "content": user}
+        ],
+        "temperature": temperature,
+        "stream": false,
+      }),
+    );
+
+    final body = utf8.decode(res.bodyBytes);
+    if (res.statusCode != 200) {
+      throw Exception('HTTP ${res.statusCode}: $body');
+    }
+
+    try {
+      final root = jsonDecode(body) as Map<String, dynamic>;
+      final content = (root['choices']?[0]?['message']?['content'] ?? '') as String;
+      final parsed = jsonDecode(content) as Map<String, dynamic>;
+
+      // 최소 필드 보정
+      parsed['corrected'] = (parsed['corrected'] ?? '').toString();
+      if (includeRewrite) {
+        parsed['rewrite'] = (parsed['rewrite'] ?? '').toString();
+      } else {
+        parsed.remove('rewrite');
+      }
+      parsed['issues'] = (parsed['issues'] is List) ? parsed['issues'] : <dynamic>[];
+
+      return parsed;
+    } catch (_) {
+      // 폴백: JSON 실패 시 텍스트 통째로 반환
+      return {
+        'corrected': '',
+        'issues': const [],
+        'rewrite': body,
+      };
     }
   }
 
