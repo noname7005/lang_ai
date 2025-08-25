@@ -1,0 +1,12 @@
+[
+  {"term":"house","meaning":"집"},
+  {"term":"family","meaning":"가족"},
+  {"term":"friend","meaning":"친구"},
+  {"term":"work","meaning":"일"},
+  {"term":"school","meaning":"학교"},
+  {"term":"teacher","meaning":"선생님"},
+  {"term":"student","meaning":"학생"},
+  {"term":"food","meaning":"음식"},
+  {"term":"drink","meaning":"음료"},
+  {"term":"money","meaning":"돈"}
+]

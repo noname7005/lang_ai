@@ -1,0 +1,12 @@
+[
+  {"term":"contract","meaning":"계약"},
+  {"term":"agreement","meaning":"합의"},
+  {"term":"negotiation","meaning":"협상"},
+  {"term":"deal","meaning":"거래"},
+  {"term":"condition","meaning":"조건"},
+  {"term":"clause","meaning":"조항"},
+  {"term":"renew","meaning":"갱신하다"},
+  {"term":"sign","meaning":"서명하다"},
+  {"term":"valid","meaning":"유효한"},
+  {"term":"expire","meaning":"만료되다"}
+]

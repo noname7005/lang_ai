@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "814304103144",
+    "project_id": "lang-ai-5efaa",
+    "storage_bucket": "lang-ai-5efaa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814304103144:android:4c7028d11a69ab14e9575d",
+        "android_client_info": {
+          "package_name": "com.example.lang_ai_v"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoJSMKmrVh1_gMZPe1meuC7OGBcI0W4JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

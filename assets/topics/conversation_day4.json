@@ -1,0 +1,12 @@
+[
+  {"term":"hotel","meaning":"호텔"},
+  {"term":"room","meaning":"방"},
+  {"term":"reservation","meaning":"예약"},
+  {"term":"check-in","meaning":"체크인"},
+  {"term":"check-out","meaning":"체크아웃"},
+  {"term":"key card","meaning":"룸키 카드"},
+  {"term":"single room","meaning":"싱글룸"},
+  {"term":"double room","meaning":"더블룸"},
+  {"term":"breakfast","meaning":"아침식사"},
+  {"term":"reception","meaning":"프런트"}
+]

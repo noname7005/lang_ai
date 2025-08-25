@@ -1,0 +1,12 @@
+[
+  {"term":"store","meaning":"가게"},
+  {"term":"shop","meaning":"상점"},
+  {"term":"price","meaning":"가격"},
+  {"term":"cheap","meaning":"저렴한"},
+  {"term":"expensive","meaning":"비싼"},
+  {"term":"discount","meaning":"할인"},
+  {"term":"cash","meaning":"현금"},
+  {"term":"credit card","meaning":"신용카드"},
+  {"term":"receipt","meaning":"영수증"},
+  {"term":"try on","meaning":"입어보다"}
+]

@@ -1,0 +1,12 @@
+[
+  {"term":"export","meaning":"수출"},
+  {"term":"import","meaning":"수입"},
+  {"term":"trade","meaning":"무역"},
+  {"term":"agreement","meaning":"협정"},
+  {"term":"tariff","meaning":"관세"},
+  {"term":"shipment","meaning":"선적"},
+  {"term":"supplier","meaning":"공급업체"},
+  {"term":"warehouse","meaning":"창고"},
+  {"term":"customs","meaning":"세관"},
+  {"term":"logistics","meaning":"물류"}
+]

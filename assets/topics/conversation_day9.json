@@ -1,0 +1,12 @@
+[
+  {"term":"museum","meaning":"박물관"},
+  {"term":"gallery","meaning":"미술관"},
+  {"term":"park","meaning":"공원"},
+  {"term":"movie","meaning":"영화"},
+  {"term":"concert","meaning":"콘서트"},
+  {"term":"festival","meaning":"축제"},
+  {"term":"music","meaning":"음악"},
+  {"term":"theater","meaning":"극장"},
+  {"term":"photo","meaning":"사진"},
+  {"term":"souvenir","meaning":"기념품"}
+]

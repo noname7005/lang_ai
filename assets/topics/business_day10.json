@@ -1,0 +1,12 @@
+[
+  {"term":"telephone","meaning":"전화"},
+  {"term":"message","meaning":"메시지"},
+  {"term":"conference call","meaning":"전화 회의"},
+  {"term":"video call","meaning":"화상 통화"},
+  {"term":"appointment","meaning":"약속"},
+  {"term":"confirm","meaning":"확인하다"},
+  {"term":"reschedule","meaning":"일정을 다시 잡다"},
+  {"term":"available","meaning":"가능한"},
+  {"term":"contact","meaning":"연락하다"},
+  {"term":"reply","meaning":"답장하다"}
+]

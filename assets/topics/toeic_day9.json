@@ -1,0 +1,12 @@
+[
+  {"term":"revenue","meaning":"수익, 매출"},
+  {"term":"expense","meaning":"비용, 경비"},
+  {"term":"profit","meaning":"이익"},
+  {"term":"deficit","meaning":"적자"},
+  {"term":"surplus","meaning":"흑자; 잉여"},
+  {"term":"investor","meaning":"투자자"},
+  {"term":"dividend","meaning":"배당금"},
+  {"term":"stock","meaning":"주식; 재고"},
+  {"term":"portfolio","meaning":"포트폴리오, 자산구성"},
+  {"term":"forecast","meaning":"전망, 예측"}
+]

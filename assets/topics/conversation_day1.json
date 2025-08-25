@@ -1,0 +1,12 @@
+[
+  {"term":"hello","meaning":"안녕하세요"},
+  {"term":"goodbye","meaning":"안녕히 가세요"},
+  {"term":"please","meaning":"부탁합니다"},
+  {"term":"thank you","meaning":"감사합니다"},
+  {"term":"sorry","meaning":"미안합니다"},
+  {"term":"excuse me","meaning":"실례합니다"},
+  {"term":"yes","meaning":"네"},
+  {"term":"no","meaning":"아니요"},
+  {"term":"okay","meaning":"괜찮습니다"},
+  {"term":"what’s up?","meaning":"잘 지내?"}
+]
