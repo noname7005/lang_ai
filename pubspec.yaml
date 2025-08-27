@@ -39,6 +39,11 @@ dependencies:
 
   # GUI
   smooth_page_indicator: ^1.2.1
+  googleapis: ^14.0.0
+  googleapis_auth: ^2.0.0
+  flutter_local_notifications: ^19.4.0
+  timezone: ^0.10.1
+  shared_preferences: ^2.5.3
 
   # App 파일 저장
   path_provider: ^2.1.3
