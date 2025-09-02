@@ -2,12 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
+import 'screens/notification/study_storage.dart';
+import 'screens/notification/notification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  final dates = await loadStudyDates(); // 저장한 날짜들
+  for (final d in dates) { await scheduleDailyStudyNotification(d); }
   runApp(const MyApp());
 }
 
