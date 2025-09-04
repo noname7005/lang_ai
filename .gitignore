@@ -10,6 +10,10 @@
 .svn/
 migrate_working_dir/
 
+# FVM 관련 파일/폴더 무시
+.fvm/
+.fvmrc
+
 # IntelliJ related
 *.iml
 *.ipr
