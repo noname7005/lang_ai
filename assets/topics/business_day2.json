@@ -1,0 +1,12 @@
+[
+  {"term":"task","meaning":"업무"},
+  {"term":"project","meaning":"프로젝트"},
+  {"term":"deadline","meaning":"마감 기한"},
+  {"term":"assign","meaning":"할당하다"},
+  {"term":"complete","meaning":"완료하다"},
+  {"term":"progress","meaning":"진행"},
+  {"term":"delay","meaning":"지연"},
+  {"term":"approve","meaning":"승인하다"},
+  {"term":"submit","meaning":"제출하다"},
+  {"term":"report","meaning":"보고"}
+]

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../widgets/page_one.dart';
 import '../widgets/page_two.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lang_ai/screens/word/quiz_screen.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,10 +16,13 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  User? _user;
 
   @override
   void initState() {
     super.initState();
+    _initUser();
+
     _pageController.addListener(() {
       final newPage = _pageController.page?.round() ?? 0;
       if (newPage != _currentPage) {
@@ -27,6 +33,17 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  Future<void> _initUser() async {
+    // 현재 유저가 없으면 익명 로그인 시도
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) {
+      final userCredential = await FirebaseAuth.instance.signInAnonymously();
+      setState(() => _user = userCredential.user);
+    } else {
+      setState(() => _user = currentUser);
+    }
+  }
+
   @override
   void dispose() {
     _pageController.dispose();
@@ -35,19 +52,23 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isAnonymous = _user?.isAnonymous ?? true;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('lang AI'),
         centerTitle: true,
       ),
-      body: Column(
+      body: _user == null
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
         children: [
           Expanded(
             child: PageView(
               controller: _pageController,
               children: const [
-                PageOne(),
-                PageTwo(),
+                PageOne(), // 단어장
+                PageTwo(), // 즐겨찾기
               ],
             ),
           ),
@@ -61,6 +82,22 @@ class _MainScreenState extends State<MainScreen> {
               spacing: 8,
               activeDotColor: Colors.blue,
             ),
+          ),
+          const SizedBox(height: 24),
+
+          // 퀴즈 버튼 (익명 사용자면 비활성화)
+          ElevatedButton(
+            onPressed: isAnonymous
+                ? null // 익명 사용자는 퀴즈 버튼 비활성화
+                : () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const QuizScreen(),
+                ),
+              );
+            },
+            child: const Text("퀴즈 시작"),
           ),
           const SizedBox(height: 24),
         ],

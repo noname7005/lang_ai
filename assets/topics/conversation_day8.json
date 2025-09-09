@@ -1,0 +1,12 @@
+[
+  {"term":"weather","meaning":"날씨"},
+  {"term":"sunny","meaning":"맑은"},
+  {"term":"rainy","meaning":"비 오는"},
+  {"term":"cloudy","meaning":"흐린"},
+  {"term":"snowy","meaning":"눈 오는"},
+  {"term":"windy","meaning":"바람 부는"},
+  {"term":"hot","meaning":"더운"},
+  {"term":"cold","meaning":"추운"},
+  {"term":"warm","meaning":"따뜻한"},
+  {"term":"storm","meaning":"폭풍"}
+]

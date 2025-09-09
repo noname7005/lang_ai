@@ -1,0 +1,12 @@
+[
+  {"term":"computer","meaning":"컴퓨터"},
+  {"term":"software","meaning":"소프트웨어"},
+  {"term":"hardware","meaning":"하드웨어"},
+  {"term":"network","meaning":"네트워크"},
+  {"term":"database","meaning":"데이터베이스"},
+  {"term":"email","meaning":"이메일"},
+  {"term":"document","meaning":"문서"},
+  {"term":"printer","meaning":"프린터"},
+  {"term":"file","meaning":"파일"},
+  {"term":"update","meaning":"업데이트"}
+]

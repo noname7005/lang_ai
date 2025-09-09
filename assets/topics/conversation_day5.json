@@ -1,0 +1,12 @@
+[
+  {"term":"menu","meaning":"메뉴"},
+  {"term":"order","meaning":"주문하다"},
+  {"term":"bill","meaning":"계산서"},
+  {"term":"water","meaning":"물"},
+  {"term":"coffee","meaning":"커피"},
+  {"term":"tea","meaning":"차"},
+  {"term":"delicious","meaning":"맛있는"},
+  {"term":"spicy","meaning":"매운"},
+  {"term":"sweet","meaning":"달콤한"},
+  {"term":"recommend","meaning":"추천하다"}
+]

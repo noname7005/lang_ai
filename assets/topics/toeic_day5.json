@@ -1,0 +1,12 @@
+[
+  {"term":"recruit","meaning":"채용하다"},
+  {"term":"candidate","meaning":"지원자, 후보자"},
+  {"term":"résumé","meaning":"이력서"},
+  {"term":"interview","meaning":"면접하다"},
+  {"term":"training","meaning":"교육, 훈련"},
+  {"term":"evaluate","meaning":"평가하다"},
+  {"term":"promote","meaning":"승진시키다; 홍보하다"},
+  {"term":"transfer","meaning":"전근시키다, 이동하다"},
+  {"term":"compensation","meaning":"보상, 보수"},
+  {"term":"vacancy","meaning":"결원, 공석"}
+]

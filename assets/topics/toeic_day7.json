@@ -1,0 +1,12 @@
+[
+  {"term":"reservation","meaning":"예약"},
+  {"term":"accommodation","meaning":"숙박 시설"},
+  {"term":"occupancy","meaning":"점유율, (호텔) 투숙률"},
+  {"term":"amenity","meaning":"편의 시설"},
+  {"term":"checkout","meaning":"체크아웃"},
+  {"term":"luggage","meaning":"수하물"},
+  {"term":"boarding pass","meaning":"탑승권"},
+  {"term":"departure","meaning":"출발"},
+  {"term":"arrival","meaning":"도착"},
+  {"term":"customs","meaning":"세관"}
+]

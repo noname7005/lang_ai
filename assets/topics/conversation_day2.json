@@ -1,0 +1,12 @@
+[
+  {"term":"where","meaning":"어디"},
+  {"term":"how far","meaning":"얼마나 멀어요?"},
+  {"term":"nearby","meaning":"근처에"},
+  {"term":"straight","meaning":"곧장"},
+  {"term":"turn left","meaning":"왼쪽으로 도세요"},
+  {"term":"turn right","meaning":"오른쪽으로 도세요"},
+  {"term":"intersection","meaning":"교차로"},
+  {"term":"map","meaning":"지도"},
+  {"term":"station","meaning":"역"},
+  {"term":"exit","meaning":"출구"}
+]

@@ -1,0 +1,12 @@
+[
+  {"term":"ticket","meaning":"표, 티켓"},
+  {"term":"bus","meaning":"버스"},
+  {"term":"train","meaning":"기차"},
+  {"term":"subway","meaning":"지하철"},
+  {"term":"taxi","meaning":"택시"},
+  {"term":"airport","meaning":"공항"},
+  {"term":"flight","meaning":"비행편"},
+  {"term":"gate","meaning":"탑승구"},
+  {"term":"boarding","meaning":"탑승"},
+  {"term":"arrival","meaning":"도착"}
+]

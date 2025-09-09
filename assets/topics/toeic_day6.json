@@ -1,0 +1,12 @@
+[
+  {"term":"confirm","meaning":"확인하다"},
+  {"term":"inquiry","meaning":"문의"},
+  {"term":"attach","meaning":"첨부하다"},
+  {"term":"notify","meaning":"알리다, 통지하다"},
+  {"term":"itinerary","meaning":"여행 일정표"},
+  {"term":"reschedule","meaning":"일정을 재조정하다"},
+  {"term":"agenda","meaning":"의제, 안건"},
+  {"term":"minutes","meaning":"회의록"},
+  {"term":"memo","meaning":"메모, 공문"},
+  {"term":"distribution","meaning":"배포, 분배"}
+]

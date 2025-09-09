@@ -1,0 +1,12 @@
+[
+  {"term":"budget","meaning":"예산"},
+  {"term":"cost","meaning":"비용"},
+  {"term":"expense","meaning":"지출"},
+  {"term":"income","meaning":"수입"},
+  {"term":"profit","meaning":"이익"},
+  {"term":"loss","meaning":"손실"},
+  {"term":"tax","meaning":"세금"},
+  {"term":"invoice","meaning":"송장"},
+  {"term":"accounting","meaning":"회계"},
+  {"term":"financial report","meaning":"재무 보고서"}
+]

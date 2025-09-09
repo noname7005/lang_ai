@@ -1,0 +1,12 @@
+[
+  {"term":"help","meaning":"도와주세요"},
+  {"term":"emergency","meaning":"비상사태"},
+  {"term":"hospital","meaning":"병원"},
+  {"term":"doctor","meaning":"의사"},
+  {"term":"police","meaning":"경찰"},
+  {"term":"fire","meaning":"불"},
+  {"term":"lost","meaning":"길을 잃었다"},
+  {"term":"accident","meaning":"사고"},
+  {"term":"injury","meaning":"부상"},
+  {"term":"safe","meaning":"안전한"}
+]

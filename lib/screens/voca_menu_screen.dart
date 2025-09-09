@@ -43,7 +43,7 @@ class VocaMenuScreen extends StatelessWidget {
         children: [
           _buildMenuCard(
             context,
-            icon: Icons.topic,
+            icon: Icons.list_alt,
             title: 'Topic',
             subtitle: '주제별 단어를 학습해보세요',
           ),
@@ -57,7 +57,7 @@ class VocaMenuScreen extends StatelessWidget {
           const SizedBox(height: 12),
           _buildMenuCard(
             context,
-            icon: Icons.quiz,
+            icon: Icons.question_answer,
             title: 'Quiz',
             subtitle: '단어 퀴즈로 복습해보세요',
           ),

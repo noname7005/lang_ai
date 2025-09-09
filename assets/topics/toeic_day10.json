@@ -1,0 +1,12 @@
+[
+  {"term":"shipment","meaning":"선적, 배송물"},
+  {"term":"inventory","meaning":"재고"},
+  {"term":"warehouse","meaning":"창고"},
+  {"term":"supplier","meaning":"공급업체"},
+  {"term":"distribute","meaning":"유통하다, 배포하다"},
+  {"term":"manufacture","meaning":"제조하다"},
+  {"term":"assembly","meaning":"조립"},
+  {"term":"defect","meaning":"결함"},
+  {"term":"capacity","meaning":"용량; 생산능력"},
+  {"term":"quality control","meaning":"품질 관리"}
+]

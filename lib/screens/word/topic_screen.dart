@@ -1,5 +1,5 @@
-//주제별 단어장
 import 'package:flutter/material.dart';
+import 'day_screen.dart';
 
 class TopicMenuScreen extends StatelessWidget {
   const TopicMenuScreen({super.key});
@@ -18,13 +18,13 @@ class TopicMenuScreen extends StatelessWidget {
           final t = topics[i];
           return ElevatedButton(
             onPressed: () {
-              // TODO: Day1~Day10 화면으로 이동
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('$t: Day 화면 연결 예정')),
+              // 여기서 DayListScreen으로 이동
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => DayListScreen(topicKey: t),
+                ),
               );
-              // 예: Navigator.push(context, MaterialPageRoute(
-              //   builder: (_) => DayListScreen(topicKey: t),
-              // ));
             },
             child: Text(t),
           );

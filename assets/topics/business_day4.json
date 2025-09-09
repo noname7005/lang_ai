@@ -1,0 +1,12 @@
+[
+  {"term":"client","meaning":"고객"},
+  {"term":"customer","meaning":"소비자"},
+  {"term":"service","meaning":"서비스"},
+  {"term":"support","meaning":"지원"},
+  {"term":"complaint","meaning":"불만"},
+  {"term":"feedback","meaning":"피드백"},
+  {"term":"satisfaction","meaning":"만족"},
+  {"term":"quality","meaning":"품질"},
+  {"term":"product","meaning":"제품"},
+  {"term":"delivery","meaning":"배송"}
+]

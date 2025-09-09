@@ -1,0 +1,12 @@
+[
+  {"term":"colleague","meaning":"동료"},
+  {"term":"supervisor","meaning":"상사"},
+  {"term":"manager","meaning":"관리자"},
+  {"term":"executive","meaning":"임원"},
+  {"term":"department","meaning":"부서"},
+  {"term":"team","meaning":"팀"},
+  {"term":"promotion","meaning":"승진"},
+  {"term":"transfer","meaning":"전근"},
+  {"term":"training","meaning":"교육"},
+  {"term":"performance","meaning":"성과"}
+]

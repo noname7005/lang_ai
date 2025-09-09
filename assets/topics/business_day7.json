@@ -1,0 +1,12 @@
+[
+  {"term":"sales","meaning":"매출"},
+  {"term":"promotion","meaning":"판촉"},
+  {"term":"advertisement","meaning":"광고"},
+  {"term":"campaign","meaning":"캠페인"},
+  {"term":"brand","meaning":"브랜드"},
+  {"term":"market","meaning":"시장"},
+  {"term":"launch","meaning":"출시"},
+  {"term":"target","meaning":"목표"},
+  {"term":"strategy","meaning":"전략"},
+  {"term":"competition","meaning":"경쟁"}
+]

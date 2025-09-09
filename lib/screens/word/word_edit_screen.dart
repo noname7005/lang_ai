@@ -1,10 +1,11 @@
-// 단어 추가/수정 화면, 입력 필드, 유효성 검사, 저장 크리거, 결과 반환
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lang_ai/models/word.dart';
+import 'package:lang_ai/services/word_repository.dart';
 
 class WordEditScreen extends StatefulWidget {
   final Word? word;
-  const WordEditScreen({Key? key, this.word}) : super(key: key);
+  const WordEditScreen({super.key, this.word}); // super.key 권장
 
   @override
   State<WordEditScreen> createState() => _WordEditScreenState();
@@ -13,12 +14,19 @@ class WordEditScreen extends StatefulWidget {
 class _WordEditScreenState extends State<WordEditScreen> {
   late TextEditingController _textController;
   late TextEditingController _meaningController;
+  late WordRepository _wordRepo;
 
   @override
   void initState() {
     super.initState();
     _textController = TextEditingController(text: widget.word?.term ?? '');
     _meaningController = TextEditingController(text: widget.word?.meaning ?? '');
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw Exception("로그인이 필요합니다.");
+    }
+    _wordRepo = WordRepository(userId: user.uid);
   }
 
   @override
@@ -28,7 +36,7 @@ class _WordEditScreenState extends State<WordEditScreen> {
     super.dispose();
   }
 
-  void _saveWord() {
+  Future<void> _saveWord() async {
     final term = _textController.text.trim();
     final meaning = _meaningController.text.trim();
 
@@ -40,20 +48,48 @@ class _WordEditScreenState extends State<WordEditScreen> {
     }
     if (meaning.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('의미를 입력해주세요')),
+        const SnackBar(content: Text('뜻을 입력해주세요')),
       );
       return;
     }
 
-    final newWord = Word(
-      id: widget.word?.id ?? DateTime.now().millisecondsSinceEpoch,
-      term: term,
-      meaning: meaning,
-      favorite: widget.word?.favorite ?? false, // ← 대소문자 수정
-      topic: widget.word?.topic ?? '',
-    );
+    try {
+      if (widget.word == null) {
+        // 신규 추가
+        final newWord = Word(
+          id: _wordRepo.generateId(),
+          term: term,
+          meaning: meaning,
+          favorite: false,
+          topic: '',
+        );
 
-    Navigator.pop(context, newWord);
+        final isDup = await _wordRepo.checkDuplicate(term);
+        if (isDup) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('이미 존재하는 단어입니다')),
+          );
+          return;
+        }
+
+        await _wordRepo.addWord(newWord);
+      } else {
+        // 수정
+        final updated = widget.word!.copyWith(
+          term: term,
+          meaning: meaning,
+          updatedAt: DateTime.now(),
+          termNorm: Word.normalize(term),
+        );
+        await _wordRepo.updateWord(updated);
+      }
+
+      Navigator.pop(context); // 성공 후 돌아가기
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('저장 실패: $e')),
+      );
+    }
   }
 
   @override
@@ -88,7 +124,7 @@ class _WordEditScreenState extends State<WordEditScreen> {
               ),
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              onSubmitted: (_) => _saveWord(), // 엔터로 저장
+              onSubmitted: (_) => _saveWord(),
             ),
           ],
         ),

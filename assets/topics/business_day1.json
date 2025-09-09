@@ -1,0 +1,12 @@
+[
+  {"term":"meeting","meaning":"회의"},
+  {"term":"agenda","meaning":"안건"},
+  {"term":"minutes","meaning":"회의록"},
+  {"term":"attend","meaning":"참석하다"},
+  {"term":"discuss","meaning":"논의하다"},
+  {"term":"presentation","meaning":"발표"},
+  {"term":"conference","meaning":"회의, 학회"},
+  {"term":"participant","meaning":"참석자"},
+  {"term":"schedule","meaning":"일정"},
+  {"term":"note","meaning":"메모"}
+]
